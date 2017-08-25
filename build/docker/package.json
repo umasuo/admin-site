@@ -1,0 +1,12 @@
+{
+  "name": "deploy-server",
+  "version": "1.0.0",
+  "description": "developer-site deploy server",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "compression": "^1.7.0",
+    "express": "^4.15.2"
+  }
+}

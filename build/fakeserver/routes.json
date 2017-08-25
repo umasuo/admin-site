@@ -1,0 +1,11 @@
+{
+  "/v1/developers/signin": "/signin",
+
+  "/v1/products/types": "/productTypes",
+  "/v1/products": "/products",
+
+  "/v1/reports/userReports": "/userReports",
+  "/v1/reports/deviceReports": "/deviceReports",
+
+  "/v1/feedbacks": "/feedbacks"
+}

@@ -1,0 +1,56 @@
+.eva-single-page {
+  overflow: auto;
+  min-height: 100vh;
+  background: #F7F7F7;
+}
+
+.eva-single-page-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 20px;
+  text-shadow: 0 1px 0 white;
+
+  &__logo {
+    fill: #73879c;
+    height: 29px;
+    vertical-align: middle;
+    padding-right: 7px;
+  }
+
+  &__brand {
+    font-size: 25px;
+    font-weight: 300;
+    vertical-align: middle;
+  }
+
+  &__right {
+    float: right;
+
+    &:after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+  }
+}
+
+.eva-single-page-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: lighten(#73879c, 20%);
+  text-shadow: 0 1px 0 white;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+.eva-single-page-wrapper {
+  right: 0px;
+  margin: 0px auto;
+  margin-top: 5%;
+  max-width: 350px;
+  position: relative;
+}

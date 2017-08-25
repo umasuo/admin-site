@@ -1,0 +1,38 @@
+sudo: required
+language: node_js
+node_js:
+    - "6"
+
+cache:
+  directories:
+    - $HOME/.npm
+    - "$HOME/google-cloud-sdk/"
+
+services:
+  - docker
+
+script:
+  - npm run build
+
+after_success:
+- npm run docker
+- sh ./build/deploy/docker_pusher.sh
+
+# deploy之前，安装gcloud和kubectl
+before_deploy:
+  - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; export CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash; fi
+  - source /home/travis/google-cloud-sdk/path.bash.inc
+  - echo 'download google cloud sdk'
+  - echo '=============================update kubectl============================='
+  - gcloud --quiet version
+  - gcloud --quiet components update
+  - gcloud --quiet components update kubectl
+  - echo '=============================finish update=============================='
+
+# 执行部署脚本，deploy-staging.sh参考4.2的模版
+deploy:
+  - provider: script
+    script: sh ./build/deploy/deploy.sh
+    skip_cleanup: true
+    on:
+      branch: dev

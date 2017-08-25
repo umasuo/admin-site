@@ -1,0 +1,51 @@
+.eva-line-through {
+  margin: 20px auto 10px auto;
+  width: 320px;
+  text-align: center;
+  border-top: 1px solid lighten(black, 20%);
+
+  > span {
+    background-color: #F7F7F7;
+    position: relative;
+    top: -10px;
+    padding: 0 10px;
+  }
+
+  &__whitebg {
+    > span {
+      background-color: white;
+    }
+  }
+}
+
+.eva-line-through-title {
+  font: normal 25px Helvetica, Arial, sans-serif;
+  letter-spacing: -0.05em;
+  line-height: 20px;
+  margin: 10px 0 30px;
+  text-align: center;
+
+  &:before {
+    background: #7e7e7e;
+    background: linear-gradient(right, #7e7e7e 0%, white 100%);
+    left: 0;
+  }
+
+  &:after {
+    background: #7e7e7e;
+    background: linear-gradient(left, #7e7e7e 0%, white 100%);
+    right: 0;
+  }
+
+  &:before, &:after {
+    content: "";
+    height: 1px;
+    position: absolute;
+    top: 10px;
+    width: 20%;
+  }
+}
+
+#nprogress .bar {
+  z-index: 1041;  // make NProgressbar higher than bootstrap modal backdrop
+}

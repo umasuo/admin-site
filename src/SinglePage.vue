@@ -1,0 +1,36 @@
+<template>
+  <div class="eva-single-page">
+    <div class="eva-single-page-top">
+      <svg class="eva-single-page-top__logo" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 182 141" style="enable-background:new 0 0 182 141;" xml:space="preserve">
+		    <path class="st0" d="M85,18.7c-52.1,0-84.9,37.7-84.9,71s38,50.6,84.9,50.6c46.9,0,84.9-17.3,84.9-50.6S137.9,18.7,85,18.7zM85.1,132.1c-40.7,0-74.7-15-74.7-43.9S40,27.5,85.1,27.5c46,0,74.7,31.9,74.7,60.8S125.8,132.1,85.1,132.1z"/>
+		    <path style="opacity:0.302;" d="M84.3,39.3c-40.1,0-65.4,25.7-65.4,49c0,23.3,29.3,35.4,65.4,35.4s65.4-12.1,65.4-35.4C149.7,65,125.1,39.3,84.3,39.3z"/>
+        <path class="st0" d="M169.1,38c-1.5-13.6-12.8-24.1-26.6-24.6c-0.3,0-0.5-0.1-0.8-0.1l-2.5,0.1c-2.1,0.1-3.7,1.8-3.6,3.9c0.1,2.1,1.8,3.7,3.9,3.6l1.3,0v0c11.1-0.4,20.5,8.3,20.9,19.4h0l0,1.3c0.1,2.1,1.8,3.7,3.9,3.6c2.1-0.1,3.7-1.8,3.6-3.9l-0.1-2.5C169.2,38.5,169.1,38.2,169.1,38z M181.8,38.3c0-0.1,0-0.3-0.1-0.4c-1.6-20.9-19.1-37.1-40-37.1c-0.1,0-0.3,0-0.4,0l-1.3,0h0l-1.3,0c-2.1,0.1-3.7,1.8-3.6,3.9c0.1,2.1,1.8,3.7,3.9,3.6l1.3,0v0h0c18.1-0.7,33.3,13.4,34,31.5l0,1.3c0.1,2.1,1.8,3.7,3.9,3.6c2.1-0.1,3.7-1.8,3.6-3.9L181.8,38.3z"/>
+        <path class="st0" d="M59.5,67.9c-8-2-15.3-0.2-16.3,4c-1.1,4.2,4.6,9.2,12.5,11.2c8,2,15.3,0.2,16.3-4C73,74.9,67.4,69.9,59.5,67.9z M124.3,71.9c-1.1-4.2-8.4-6-16.3-4c-8,2-13.6,7-12.5,11.2c1.1,4.2,8.4,6,16.3,4C119.7,81.2,125.3,76.1,124.3,71.9z"/>
+      </svg>
+
+      <span class="eva-single-page-top__brand"> Eva Cloud</span>
+
+      <div class="eva-single-page-top__right">
+        <label>{{$t('app.lang')}}:
+          <select>
+            <option value="zh_cn">{{$t('app.lang_options.zh_cn')}}</option>
+            <option value="en_us">{{$t('app.lang_options.en_us')}}</option>
+          </select>
+        </label>
+      </div>
+    </div>
+
+    <router-view></router-view>
+
+    <div class="eva-single-page-footer">{{$t('app.icp_license')}}</div>
+  </div>
+</template>
+
+<script>
+  export default {
+    name: 'SinglePage'
+  }
+</script>
+
+<style lang="scss">
+</style>
