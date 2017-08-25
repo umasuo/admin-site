@@ -17,13 +17,6 @@
 
           <div class="clearfix"></div>
 
-          <div class="clearfix area-selector">
-            <select class="form-control area-selector__content">
-              <option value="cn">{{$t('app.area.cn')}}</option>
-              <option value="us">{{$t('app.area.na')}}</option>
-            </select>
-          </div>
-
           <br/>
 
           <!-- sidebar menu -->
@@ -52,25 +45,6 @@
       <!-- footer content -->
       <footer>
         {{$t('app.console_footer')}}
-        <div class="pull-right form-inline">
-          <div class="form-group">
-            <label>{{$t('app.lang')}}:
-              <select>
-                <option value="zh_cn">{{$t('app.lang_options.zh_cn')}}</option>
-                <option value="en_us">{{$t('app.lang_options.en_us')}}</option>
-              </select>
-            </label>
-          </div>
-
-          <div class="form-group">
-            <label>{{$t('app.timezone')}}:
-              <select :value="timezone" @input="updateTimezone">
-                <option v-for="gmt in 25" :value="'GMT' + (gmt - 13 < 0 ? '' : '+') + (gmt - 13)">GMT{{ (gmt - 13 < 0 ? '' : '+') + (gmt - 13) }}</option>
-              </select>
-            </label>
-          </div>
-
-        </div>
         <div class="clearfix"></div>
       </footer>
       <!-- /footer content -->
@@ -79,7 +53,6 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
   import NavMenu from 'src/components/FrameNavMenu'
   import TopNav from 'src/components/FrameTopNav'
 
@@ -95,66 +68,16 @@
             toName: 'Dashboard'
           },
           {
-            title: this.$t('nav.product_definition'),
+            title: this.$t('nav.product_types'),
             faIcon: 'fa-tablet',
-            toName: 'ProductDefinitions'
-            /* subMenu: [
-              {
-                name: '产品定义',
-                toName: 'ProductDefinitions'
-              },
-              {
-                name: '数据定义',
-                toName: 'DataDefinitions'
-              }
-            ] */
-          },
-          {
-            title: this.$t('nav.processing'),
-            faIcon: 'fa-line-chart',
-            subMenu: [
-              // { 暂时保留不显示
-              //   name: '数据概要',
-              //   toName: 'DataSummary'
-              // },
-              {
-                name: this.$t('nav.device_manage'),
-                toName: 'ManageDevices'
-              },
-//              {
-//                name: '数据分析',
-//                toName: 'DataProcessor'
-//              },
-              {
-                name: this.$t('nav.user_list'),
-                toName: 'UserManager'
-              },
-              // {
-              //   name: '告警信息',
-              //   toName: 'MessageManager'
-              // },
-              {
-                name: this.$t('nav.user_feedback'),
-                toName: 'FeedbackManager'
-              }
-            ]
-          },
-          {
-            title: this.$t('nav.documentation'),
-            faIcon: 'fa-book',
-            toHref: 'https://umasuo.gitbooks.io/eva/content/'
+            toName: 'ProductTypes'
           }
+          // {
+          //   title: this.$t('nav.documentation'),
+          //   faIcon: 'fa-book',
+          //   toHref: 'https://umasuo.gitbooks.io/eva/content/'
+          // }
         ]
-      }
-    },
-
-    computed: {
-      ...mapState(['timezone'])
-    },
-
-    methods: {
-      updateTimezone (e) {
-        this.$store.commit('updateTimezone', e.target.value)
       }
     },
 
@@ -182,15 +105,6 @@
   .right_col {
     min-height: 100vh;
     min-height: calc(100vh - 51px);
-  }
-
-  .area-selector {
-    background-color: lighten(#2a3f54, 10%);
-    &__content {
-      border: none;
-      background-color: transparent;
-      color: white;
-    }
   }
 
   .sidebar-footer {

@@ -60,14 +60,7 @@ $t('misc.')
 
   nav: {
     dashboard: '仪表盘',
-
-    product_definition: '产品定义',
-    device_manage: '设备管理',
-    user_list: '用户列表',
-    user_feedback: '用户反馈',
-
-    processing: '运营',
-    documentation: '文档'
+    product_types: '产品类别',
   },
 
   auth: {
@@ -172,15 +165,16 @@ $t('misc.')
     develop: '开发调试',
     production: '批量投产',
 
-    create_product: '创建产品',
+    create_product: '创建产品类别',
     quick_create: '或快速创建',
     reselect: '重选产品类别',
-    name: '产品名称',
+    name: '产品类别名称',
+    group_name: '所属产品组',
     bluetooth: '蓝牙',
 
     has_same_name: '已经存在相同名字的产品了',
 
-    product_list: '产品列表',
+    product_list: '产品类别列表',
     network_type: '联网类型',
 
     credential: '凭据',

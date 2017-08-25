@@ -10,6 +10,7 @@ import client from 'src/api/client'
 
 import auth from 'src/api/auth'
 import report from 'src/api/report'
+import productTypes from 'src/api/productTypes'
 
 export default {
   client, // config the axios http library & store api state and persist them in localstorage
@@ -48,5 +49,6 @@ export default {
   // files,
 
   auth,
-  report
+  report,
+  productTypes
 }
