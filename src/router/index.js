@@ -9,6 +9,7 @@ import SinglePage from 'src/SinglePage'
 import Signin from 'src/views/Signin'
 import Dashboard from 'src/views/Dashboard'
 import ProductTypes from 'src/views/ProductTypes'
+import ProductTypeDetail from 'src/views/ProductTypeDetail'
 
 Vue.use(Router)
 
@@ -45,9 +46,17 @@ const router = new Router({
           }
         },
         {
-          path: 'manage-product-types',
+          path: 'product-types',
           name: 'ProductTypes',
           component: ProductTypes,
+          meta: {
+            requiresAuth: true
+          }
+        },
+        {
+          path: 'product-types/:id',
+          name: 'ProductTypeDetail',
+          component: ProductTypeDetail,
           meta: {
             requiresAuth: true
           }

@@ -11,7 +11,7 @@
             <button class="btn btn-lg btn-primary" @click="createProd()">{{$t('product_definition.create_product')}}</button>
 
             <portal to="modals" v-if="isShowCreateModal">
-              <ProductCreate ref="createProductModal"></ProductCreate>
+              <ProductTypeCreateModal ref="createProductModal"></ProductTypeCreateModal>
             </portal>
           </div>
         </div><!-- End of eva-create-product-wizard -->
@@ -53,7 +53,7 @@
   import $ from 'jquery'
   import api from 'src/api'
   import ProductTypeRow from 'src/components/ProductTypeRow'
-  import ProductCreate from 'src/components/ProductCreate'
+  import ProductTypeCreateModal from 'src/components/ProductTypeCreateModal'
 
   export default {
     name: 'ProductTypes',
@@ -94,7 +94,7 @@
 
     components: {
       ProductTypeRow,
-      ProductCreate
+      ProductTypeCreateModal
     }
   }
 </script>

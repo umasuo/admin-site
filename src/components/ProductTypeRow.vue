@@ -9,8 +9,8 @@
     </td>
 
     <td style="width: 100px;">
-      <!-- <router-link :to="{ name: 'ProductDetail', params: { pid: product.id } }" href="javascript:;">{{$t('misc.edit')}}</router-link> -->
-      <a href="javascript:;" @click="deleteProduct(product)">{{$t('misc.delete')}}</a>
+      <router-link :to="{ name: 'ProductTypeDetail', params: { id: productType.id } }" href="javascript:;">{{$t('misc.edit')}}</router-link>
+      <a href="javascript:;" @click="deleteProductType(productType)">{{$t('misc.delete')}}</a>
     </td>
   </tr>
 </template>
@@ -22,7 +22,7 @@
     props: ['productType'],
 
     methods: {
-      deleteProduct (product) {
+      deleteProductType (productType) {
         try {
           // TODO: call api to delete product type
           alert('todo')

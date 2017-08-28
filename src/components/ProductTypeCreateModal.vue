@@ -4,32 +4,14 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">{{$t('product_definition.create_product')}}</h4>
+          <!-- TODO: i18n -->
+          <h4 class="modal-title" id="myModalLabel">创建产品类别</h4>
         </div>
         <div class="modal-body eva-product-create__wrapper">
-          <div class="eva-product-create__content" :class="{ 'slideLeft': curStep === 2 }">
-
-            <!-- STEP 1, Type -->
-            <div class="eva-product-create-type">
-              <ul class="eva-product-create-type__category">
-                <li v-for="(cate, key) in categorizedProductTypes"
-                    :class="{ active: curTypeCategory === key }"
-                    @click="curTypeCategory = key">
-                  <a href="javascript:;">{{ key }}</a>
-                </li>
-              </ul>
-
-              <ul class="eva-product-create-type__list">
-                <!-- TODO: Circle button is too small, make it better with long product type name -->
-                <li v-for="type in categorizedProductTypes[curTypeCategory]" @click="selectType(type)"><a href="javascript:;">{{ type.name }}</a></li>
-              </ul>
-            </div>
+          <div class="eva-product-create__content">
 
             <!-- STEP 2, Info-->
             <div class="eva-product-create-info">
-              <h3 v-if="curStep === 2">{{$t('misc.create') + selectedType.name }}</h3>
-              <h3 v-else>{{$t('product_definition.create_product')}}</h3>
-              <a href="javascript:;" @click="changeType">{{$t('product_definition.reselect')}}</a>
 
               <form class="form-horizontal form-label-left eva-product-create-info__form">
                 <div class="form-group">
@@ -40,20 +22,11 @@
                   </div>
                 </div>
 
-                <div class="clearfix eva-product-create-info__form-type">
-                  <label class="control-label col-xs-3">{{$t('product_definition.func.trans_type')}}: </label>
-                  <div class="checkbox col-xs-9">
-                    <label>
-                      <input type="radio" v-model="create.type" value="WIFI"> WIFI
-                    </label>
+                <div class="form-group">
+                  <label class="control-label col-xs-3">所属产品组: </label>
 
-                    <label>
-                      <input type="radio" v-model="create.type" value="BLUETOOTH"> {{$t('product_definition.bluetooth')}}
-                    </label>
-
-                    <label>
-                      <input type="radio" v-model="create.type" value="GPRS"> GPRS
-                    </label>
+                  <div class="col-xs-9">
+                    <input class="form-control" type="text" v-model="create.group">
                   </div>
                 </div>
 
@@ -74,65 +47,23 @@
 </template>
 
 <script>
-  import $ from 'jquery'
-  import { mapActions, mapGetters } from 'vuex'
-
   export default {
     name: 'ProductCreate',
 
     data () {
       return {
         curStep: 1,
-        selectedType: undefined,
-
-        curTypeCategory: '大家电',
 
         create: {
           name: '',
-          type: ''
+          group: ''
         },
         state: ''
       }
     },
 
-    created () {
-      this.fetchProductTypes()
-    },
-
-    computed: {
-      ...mapGetters(['categorizedProductTypes'])
-    },
-
     methods: {
-      ...mapActions(['fetchProductTypes', 'createProduct']),
-
-      selectType (type) {
-        this.selectedType = type
-        this.curStep = 2
-      },
-
-      changeType () {
-        this.selectedType = undefined
-        this.curStep = 1
-      },
-
       async createAndEdit () {
-        try {
-          const newProduct = await this.createProduct({
-            name: this.create.name,
-            type: this.create.type,
-            productTypeId: this.selectedType.id,
-            icon: 'http://evacloud-20170725.oss-cn-shenzhen.aliyuncs.com/ffba2349-2a38-4e40-a4f6-bb42369ba298'
-          })
-
-          const vm = this
-          $(this.$refs.modal).modal('hide').on('hidden.bs.modal', e => {
-            vm.$router.push({name: 'ProductDetail', params: {pid: newProduct.id}})
-          })
-        } catch (e) {
-          console.dir(e)
-          this.state = e.message
-        }
       }
     }
   }
