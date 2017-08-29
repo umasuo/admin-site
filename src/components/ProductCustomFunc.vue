@@ -24,7 +24,7 @@
           <a href="javascript:;" @click="showEditor(index)" v-else>{{$t('misc.view')}}</a>
 
           <portal to="modals" v-if="isShowingEditor">
-            <ProductFuncEditor mode="custom" id="product-custom-func-editor" :product="product" :func="func" :viewOnly="viewOnly"></ProductFuncEditor>
+            <ProductFuncEditor mode="update" id="product-custom-func-editor" :product="product" :func="func" :viewOnly="viewOnly"></ProductFuncEditor>
           </portal>
 
         </td>

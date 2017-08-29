@@ -38,7 +38,7 @@
                 </tr>
               </thead>
               <tbody>
-                <ProductTypeRow v-for="productType in productTypes" :productType="productType" :key="productType.id"></ProductTypeRow>
+                <ProductTypeRow v-for="productType in productTypes" :productType="productType" :key="productType.id" @deleted="typeDeleted"></ProductTypeRow>
               </tbody>
             </table>
 
@@ -79,16 +79,15 @@
         this.isShowCreateModal = true
         const vm = this
         setTimeout(() => {
-          if (type) {
-            vm.$refs.createProductModal.curStep = 2
-            vm.$refs.createProductModal.selectedType = type
-          }
           $(vm.$refs.createProductModal.$el).modal('show').on('hidden.bs.modal', e => {
-            vm.$refs.createProductModal.curStep = 1
-            vm.$refs.createProductModal.selectedType = ''
             vm.isShowCreateModal = false
           })
         }, 0)
+      },
+
+      typeDeleted (type) {
+        const index = this.productTypes.indexOf(type)
+        this.productTypes.splice(index, 1)
       }
     },
 

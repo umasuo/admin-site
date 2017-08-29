@@ -31,9 +31,7 @@
                 <label class="eva-radio-label"><input type="radio" value="boolean" v-model="editingFunc.dataType.type" :disabled="viewOnly || mode === 'standard'"> {{$t('product_definition.func.datatype.bool')}}</label>
                 <label class="eva-radio-label"><input type="radio" value="value" v-model="editingFunc.dataType.type" :disabled="viewOnly || mode === 'standard'"> {{$t('product_definition.func.datatype.value')}}</label>
                 <label class="eva-radio-label"><input type="radio" value="enum" v-model="editingFunc.dataType.type" :disabled="viewOnly || mode === 'standard'"> {{$t('product_definition.func.datatype.enum')}}</label>
-                <!--<label class="eva-radio-label"><input type="radio" value="error" v-model="editingFunc.dataType.type" :disabled="viewOnly || mode === 'standard'"> 故障型</label>-->
                 <label class="eva-radio-label"><input type="radio" value="string" v-model="editingFunc.dataType.type" :disabled="viewOnly || mode === 'standard'"> {{$t('product_definition.func.datatype.string')}}</label>
-                <!--<label class="eva-radio-label"><input type="radio" value="raw" v-model="editingFunc.dataType.type" :disabled="viewOnly || mode === 'standard'"> RAW型</label>-->
               </div>
             </div>
 
@@ -80,17 +78,6 @@
                 </div>
               </div>
             </template>
-
-            <!-- Fields for error type -->
-            <!--<template v-else-if="editingFunc.dataType === 'error'">-->
-              <!--<div class="form-group">-->
-                <!--<label class="col-xs-3 control-label"><span class="required">*</span> 故障值：</label>-->
-                <!--<div class="col-xs-9">-->
-                  <!--<textarea class="form-control" placeholder="将故障值填入此处，用英文逗号分隔"></textarea>-->
-                  <!--<p><small>故障值，是按照对应的字节位来标识的，依次为bit0-bitx，多个字节位代表多个故障可同时发生，最多支持32位。</small></p>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</template>-->
 
             <!-- Fields for string type -->
             <template v-else-if="editingFunc.dataType.type === 'string'">
@@ -177,17 +164,11 @@
 
     computed: {
       title () {
-        let opr
         switch (this.mode) {
-          case 'standard':
-            opr = this.viewOnly ? '查看' : '编辑'
-            return opr + '标准功能'
-          case 'createCustom':
-            opr = this.viewOnly ? '查看' : '添加'
-            return opr + '自定义功能'
-          case 'custom':
-            opr = this.viewOnly ? '查看' : '编辑'
-            return opr + '自定义功能'
+          case 'add':
+            return '添加标准功能'
+          case 'update':
+            return '编辑自定义功能'
         }
       }
     },

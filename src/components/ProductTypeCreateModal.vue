@@ -54,8 +54,6 @@
 
     data () {
       return {
-        curStep: 1,
-
         create: {
           name: '',
           group: ''

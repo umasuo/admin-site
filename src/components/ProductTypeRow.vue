@@ -16,16 +16,18 @@
 </template>
 
 <script>
+  import api from 'src/api'
+
   export default {
     name: 'ProductTypeRow',
 
     props: ['productType'],
 
     methods: {
-      deleteProductType (productType) {
+      async deleteProductType (productType) {
         try {
-          // TODO: call api to delete product type
-          alert('todo')
+          await api.productTypes.deleteType(this.productType.id, this.productType.version)
+          this.$emit('deleted', this.productType)
         } catch (e) {
           console.dir(e)
         }

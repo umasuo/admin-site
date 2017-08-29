@@ -12,7 +12,7 @@
           </h2>
 
           <portal to="modals" v-if="isCreatingCustomFunc">
-            <ProductFuncEditor mode="createCustom" :product="productType" ref="createCustomFuncModal"></ProductFuncEditor>
+            <ProductFuncEditor mode="add" :product="productType" ref="createCustomFuncModal" @added="addedType"></ProductFuncEditor>
           </portal>
 
           <div class="clearfix"></div>
@@ -48,6 +48,7 @@
   import $ from 'jquery'
   import api from 'src/api'
 
+  // import ProductTypeBasicInfo from 'src/components/ProductTypeBasicInfo'
   import ProductCustomFunc from 'src/components/ProductCustomFunc'
   import ProductData from 'src/components/ProductData'
   import ProductFuncEditor from 'src/components/ProductFuncEditor'
@@ -105,6 +106,10 @@
             vm.isShowingDataDefinition = false
           })
         })
+      },
+
+      addedType (type) {
+        this.productType = type
       }
     },
 

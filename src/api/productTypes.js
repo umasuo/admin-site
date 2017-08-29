@@ -16,6 +16,14 @@ export default {
     })).data
   },
 
+  async deleteType (id, version) {
+    return (await http.delete('/products/types/' + id, {
+      params: {
+        version
+      }
+    })).data
+  },
+
   async updateType (id, request) {
     return (await http.put('/products/types/' + id, request)).data
   }
