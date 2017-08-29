@@ -4,6 +4,14 @@
       <div class="alert alert-danger" role="alert" v-if="message === 'fail'">{{$t('misc.fetch_data_fail')}}</div>
     </div>
 
+    <div class="col-xs-12">
+      <div class="x_panel">
+        <div class="x_content">
+          <ProductTypeBasicInfo :productType="productType"  @updated="updateType"></ProductTypeBasicInfo>
+        </div>
+      </div>
+    </div>
+
     <div class="col-sm-12">
       <div class="x_panel">
         <div class="x_title">
@@ -48,7 +56,7 @@
   import $ from 'jquery'
   import api from 'src/api'
 
-  // import ProductTypeBasicInfo from 'src/components/ProductTypeBasicInfo'
+  import ProductTypeBasicInfo from 'src/components/ProductTypeBasicInfo'
   import ProductTypeFunc from 'src/components/ProductTypeFunc'
   import ProductData from 'src/components/ProductData'
   import ProductTypeFuncEditor from 'src/components/ProductTypeFuncEditor'
@@ -114,6 +122,7 @@
     },
 
     components: {
+      ProductTypeBasicInfo,
       ProductTypeFunc,
       ProductData,
       ProductTypeFuncEditor,
