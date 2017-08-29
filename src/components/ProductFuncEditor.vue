@@ -134,7 +134,6 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex'
   import api from 'src/api'
   import $ from 'jquery'
 
@@ -153,7 +152,6 @@
             dataType: {
               type: 'value'
             },
-            command: '',
             transferType: 'UPDOWN'
           }
         }
@@ -195,7 +193,6 @@
     },
 
     methods: {
-      ...mapActions(['updateProduct']),
 
       async submit () {
         let dataType = {}
@@ -207,24 +204,21 @@
 
         var actionName
         switch (this.mode) {
-          case 'createCustom':
-            actionName = 'addFunction'
+          case 'add':
+            actionName = 'addProductTypeFunction'
             break
-          case 'standard':
-            actionName = 'updateStandardFunction'
-            break
-          case 'custom':
-            actionName = 'updateFunction'
+          case 'update':
+            actionName = 'updateProductTypeFunction'
             break
         }
 
         try {
-          await this.updateProduct({
-            product: this.product,
-            request: api.buildRequest(this.product.version)
-                        .addAction({action: actionName, ...this.editingFunc, ...dataType})
-                        .request
-          })
+          const updatedProduct = await api.productTypes.updateType(this.product.id,
+            api.buildRequest(this.product.version)
+              .addAction({action: actionName, ...this.editingFunc, ...dataType})
+              .request)
+          this.$emit('added', updatedProduct)
+
           $(this.$refs.modal).modal('hide')
         } catch (e) {
           console.dir(e)

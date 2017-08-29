@@ -57,6 +57,7 @@ const router = new Router({
           path: 'product-types/:id',
           name: 'ProductTypeDetail',
           component: ProductTypeDetail,
+          props: true,
           meta: {
             requiresAuth: true
           }
