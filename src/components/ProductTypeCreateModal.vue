@@ -47,8 +47,10 @@
 </template>
 
 <script>
+  import api from 'src/api'
+
   export default {
-    name: 'ProductCreate',
+    name: 'ProductTypeCreateModal',
 
     data () {
       return {
@@ -64,6 +66,9 @@
 
     methods: {
       async createAndEdit () {
+        const type = await api.productTypes.createType(this.create.name, this.create.group)
+        this.$router.push({name: 'ProductTypeDetail', params: {id: type.id}})
+        console.dir(type)
       }
     }
   }
