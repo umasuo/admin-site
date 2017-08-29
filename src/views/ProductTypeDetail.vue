@@ -12,13 +12,13 @@
           </h2>
 
           <portal to="modals" v-if="isCreatingCustomFunc">
-            <ProductFuncEditor mode="add" :product="productType" ref="createCustomFuncModal" @added="addedType"></ProductFuncEditor>
+            <ProductTypeFuncEditor mode="add" :productType="productType" ref="createCustomFuncModal" @updated="updateType"></ProductTypeFuncEditor>
           </portal>
 
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
-          <ProductCustomFunc v-if="productType" :product="productType"></ProductCustomFunc>
+          <ProductTypeFunc v-if="productType" :productType="productType" @updated="updateType"></ProductTypeFunc>
         </div>
       </div>
     </div>
@@ -49,9 +49,9 @@
   import api from 'src/api'
 
   // import ProductTypeBasicInfo from 'src/components/ProductTypeBasicInfo'
-  import ProductCustomFunc from 'src/components/ProductCustomFunc'
+  import ProductTypeFunc from 'src/components/ProductTypeFunc'
   import ProductData from 'src/components/ProductData'
-  import ProductFuncEditor from 'src/components/ProductFuncEditor'
+  import ProductTypeFuncEditor from 'src/components/ProductTypeFuncEditor'
   import DataDefinitionEditor from 'src/components/DataDefinitionEditor'
 
   export default {
@@ -108,15 +108,15 @@
         })
       },
 
-      addedType (type) {
+      updateType (type) {
         this.productType = type
       }
     },
 
     components: {
-      ProductCustomFunc,
+      ProductTypeFunc,
       ProductData,
-      ProductFuncEditor,
+      ProductTypeFuncEditor,
       DataDefinitionEditor
     }
   }

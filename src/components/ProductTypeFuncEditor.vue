@@ -14,24 +14,24 @@
             <div class="form-group">
               <label class="col-xs-3 control-label"><span class="required">*</span> {{$t('product_definition.func_editor.name')}}: </label>
               <div class="col-xs-9">
-                <input type="text" class="form-control" v-model="editingFunc.name" :disabled="viewOnly">
+                <input type="text" class="form-control" v-model="editingFunc.name">
               </div>
             </div>
 
             <div class="form-group">
               <label class="col-xs-3 control-label"><span class="required">*</span> {{$t('product_definition.func_editor.id')}}: </label>
               <div class="col-xs-9">
-                <input type="text" class="form-control" v-model="editingFunc.functionId" :disabled="viewOnly || mode === 'standard'">
+                <input type="text" class="form-control" v-model="editingFunc.functionId">
               </div>
             </div>
 
             <div class="form-group">
               <label class="col-xs-3 control-label"><span class="required">*</span> {{$t('product_definition.func_editor.type')}}: </label>
               <div class="col-xs-9">
-                <label class="eva-radio-label"><input type="radio" value="boolean" v-model="editingFunc.dataType.type" :disabled="viewOnly || mode === 'standard'"> {{$t('product_definition.func.datatype.bool')}}</label>
-                <label class="eva-radio-label"><input type="radio" value="value" v-model="editingFunc.dataType.type" :disabled="viewOnly || mode === 'standard'"> {{$t('product_definition.func.datatype.value')}}</label>
-                <label class="eva-radio-label"><input type="radio" value="enum" v-model="editingFunc.dataType.type" :disabled="viewOnly || mode === 'standard'"> {{$t('product_definition.func.datatype.enum')}}</label>
-                <label class="eva-radio-label"><input type="radio" value="string" v-model="editingFunc.dataType.type" :disabled="viewOnly || mode === 'standard'"> {{$t('product_definition.func.datatype.string')}}</label>
+                <label class="eva-radio-label"><input type="radio" value="boolean" v-model="editingFunc.dataType.type"> {{$t('product_definition.func.datatype.bool')}}</label>
+                <label class="eva-radio-label"><input type="radio" value="value" v-model="editingFunc.dataType.type"> {{$t('product_definition.func.datatype.value')}}</label>
+                <label class="eva-radio-label"><input type="radio" value="enum" v-model="editingFunc.dataType.type"> {{$t('product_definition.func.datatype.enum')}}</label>
+                <label class="eva-radio-label"><input type="radio" value="string" v-model="editingFunc.dataType.type"> {{$t('product_definition.func.datatype.string')}}</label>
               </div>
             </div>
 
@@ -40,29 +40,29 @@
               <div class="form-group">
                 <label class="col-xs-3 control-label"><span class="required">*</span> {{$t('product_definition.func_editor.value')}}: </label>
                 <div class="col-xs-9 form-inline">
-                  <input type="text" class="form-control" :placeholder="$t('product_definition.func_editor.input_int')" v-model="numberType.startValue" :disabled="viewOnly"> -
-                  <input type="text" class="form-control" :placeholder="$t('product_definition.func_editor.input_int')" v-model="numberType.endValue" :disabled="viewOnly">
+                  <input type="text" class="form-control" :placeholder="$t('product_definition.func_editor.input_int')" v-model="numberType.startValue"> -
+                  <input type="text" class="form-control" :placeholder="$t('product_definition.func_editor.input_int')" v-model="numberType.endValue">
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-xs-3 control-label"><span class="required">*</span> {{$t('product_definition.func_editor.interval')}}: </label>
                 <div class="col-xs-9">
-                  <input type="text" class="form-control" :placeholder="$t('product_definition.func_editor.input_int')" v-model="numberType.interval" :disabled="viewOnly">
+                  <input type="text" class="form-control" :placeholder="$t('product_definition.func_editor.input_int')" v-model="numberType.interval">
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-xs-3 control-label"><span class="required">*</span> {{$t('product_definition.func_editor.multiple')}}: </label>
                 <div class="col-xs-9">
-                  <input type="text" class="form-control" :placeholder="$t('product_definition.func_editor.input_int')" v-model="numberType.multiple" :disabled="viewOnly">
+                  <input type="text" class="form-control" :placeholder="$t('product_definition.func_editor.input_int')" v-model="numberType.multiple">
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-xs-3 control-label"> {{$t('product_definition.func_editor.unit')}}: </label>
                 <div class="col-xs-9">
-                  <input type="text" class="form-control" placeholder="" v-model="numberType.unit" :disabled="viewOnly">
+                  <input type="text" class="form-control" placeholder="" v-model="numberType.unit">
                 </div>
               </div>
             </template>
@@ -72,7 +72,7 @@
               <div class="form-group">
                 <label class="col-xs-3 control-label"><span class="required">*</span> {{$t('product_definition.func_editor.enum')}}: </label>
                 <div class="col-xs-9">
-                  <textarea class="form-control" v-model="enumValues" :placeholder="$t('product_definition.func_editor.enum_hint')" :disabled="viewOnly"></textarea>
+                  <textarea class="form-control" v-model="enumValues" :placeholder="$t('product_definition.func_editor.enum_hint')"></textarea>
                   <p class="text-danger" v-if="enumMessage === 'enum duplicated'"><small>{{$t('product_definition.func_editor.enum_duplicate')}}</small></p>
                   <p class="text-danger" v-else-if="enumMessage !== ''"><small>{{$t('misc.unknow_error')}}</small></p>
                 </div>
@@ -92,16 +92,16 @@
             <div class="form-group">
               <label class="col-xs-3 control-label"><span class="required">*</span> {{$t('product_definition.func.trans_type')}}: </label>
               <div class="col-xs-9">
-                <label class="eva-radio-label"><input type="radio" value="UPDOWN" v-model="editingFunc.transferType" :disabled="viewOnly || editingFunc.dataType === 'error'"> {{$t('product_definition.func.transfer.updown')}}</label>
-                <label class="eva-radio-label"><input type="radio" value="UP" v-model="editingFunc.transferType" :disabled="viewOnly"> {{$t('product_definition.func.transfer.up')}}</label>
-                <label class="eva-radio-label"><input type="radio" value="DOWN" v-model="editingFunc.transferType" :disabled="viewOnly || editingFunc.dataType === 'error'"> {{$t('product_definition.func.transfer.down')}}</label>
+                <label class="eva-radio-label"><input type="radio" value="UPDOWN" v-model="editingFunc.transferType"> {{$t('product_definition.func.transfer.updown')}}</label>
+                <label class="eva-radio-label"><input type="radio" value="UP" v-model="editingFunc.transferType"> {{$t('product_definition.func.transfer.up')}}</label>
+                <label class="eva-radio-label"><input type="radio" value="DOWN" v-model="editingFunc.transferType"> {{$t('product_definition.func.transfer.down')}}</label>
               </div>
             </div>
 
             <div class="form-group">
               <label class="col-xs-3 control-label">{{$t('misc.description')}}: </label>
               <div class="col-xs-9">
-                <textarea class="form-control" v-model="editingFunc.description" :placeholder="$t('product_definition.func_editor.desc')" :disabled="viewOnly"></textarea>
+                <textarea class="form-control" v-model="editingFunc.description" :placeholder="$t('product_definition.func_editor.desc')"></textarea>
               </div>
             </div>
           </form>
@@ -111,8 +111,8 @@
           <p class="text-danger" v-if="message === 'fail'"><small>{{$t('misc.save_fail')}}</small></p>
           <p class="text-danger" v-else-if="message !== ''"><small>{{$t('misc.unknow_error')}}</small></p>
 
-          <button type="submit" class="btn btn-primary" @click.prevent="submit" v-if="!viewOnly">{{$t('misc.confirm')}}</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">{{ viewOnly ? $t('misc.close') : $t('misc.cancel') }}</button>
+          <button type="submit" class="btn btn-primary" @click.prevent="submit">{{$t('misc.confirm')}}</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">{{$t('misc.cancel')}}</button>
         </div>
 
       </div>
@@ -125,7 +125,7 @@
   import $ from 'jquery'
 
   export default {
-    name: 'ProductFuncEditor',
+    name: 'ProductTypeFuncEditor',
 
     props: {
       mode: {
@@ -143,8 +143,7 @@
           }
         }
       },
-      product: Object,
-      viewOnly: Boolean
+      productType: Object
     },
 
     data () {
@@ -194,11 +193,11 @@
         }
 
         try {
-          const updatedProduct = await api.productTypes.updateType(this.product.id,
-            api.buildRequest(this.product.version)
+          const updatedProductType = await api.productTypes.updateType(this.productType.id,
+            api.buildRequest(this.productType.version)
               .addAction({action: actionName, ...this.editingFunc, ...dataType})
               .request)
-          this.$emit('added', updatedProduct)
+          this.$emit('updated', updatedProductType)
 
           $(this.$refs.modal).modal('hide')
         } catch (e) {
