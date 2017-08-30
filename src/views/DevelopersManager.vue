@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div class="row">
+    <!-- TODO: 过滤查询接口完成后实现 -->
+    <!-- <div class="row">
       <div class="col-sm-12">
 
         <div class="alert alert-danger" role="alert" v-if="message === 'fail'">{{$t('misc.fetch_data_fail')}}</div>
@@ -28,7 +29,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <div class="row">
       <div class="col-sm-12">
@@ -45,15 +46,19 @@
               <thead>
                 <tr>
                   <th>{{$t('user_manage.user_id')}}</th>
-                  <th>{{$t('device_manage.user_phone')}}</th>
+                  <th>{{$t('misc.phone')}}</th>
+                  <th>{{$t('misc.email')}}</th>
+                  <th>{{$t('misc.state')}}</th>
                   <th>{{$t('user_manage.register_date')}}</th>
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="user in users">
-                  <td>{{ user.userId }}</td>
-                  <td>{{ user.phone }}</td>
-                  <td>{{ formatTime(user.registerTime) }}</td>
+                <tr v-for="developer in developers">
+                  <td>{{ developer.id }}</td>
+                  <td>{{ developer.phone }}</td>
+                  <td>{{ developer.email }}</td>
+                  <td>{{ developer.status }}</td>
+                  <td>{{ formatTime(developer.createdAt) }}</td>
                 </tr>
               </tbody>
             </table>
@@ -66,61 +71,33 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
   import api from 'src/api'
 
-  let moment = null
-
   export default {
-    name: 'UserManager',
+    name: 'DevelopersManager',
 
     data () {
       return {
         phone: null,
         id: null,
 
-        users: null,
+        developers: null,
 
         message: ''
       }
     },
 
-    computed: {
-      ...mapState(['timezone'])
-    },
-
     async created () {
       try {
-        const usersPromise = this.fetchUsers()
-        const momentPromise = import(/* webpackChunkName: "moment" */ 'moment')
-        moment = (await Promise.all([momentPromise, usersPromise]))[0]
-
-        this.$forceUpdate()
+        this.developers = await api.developers.getDevelopers()
       } catch (e) {
         this.message = 'fail'
       }
     },
 
     methods: {
-      async fetchUsers () {
-        if (this.phone) {
-          this.users = await api.user.fetchUserByPhone(this.phone)
-        } else if (this.id) {
-          this.users = await api.user.fetchUserByPhone(this.id)
-        } else {
-          this.users = await api.user.fetchUsers()
-        }
-      },
-
       formatTime (timestamp) {
-        // moment library might not loaded yet
-        if (!moment) {
-          return ''
-        }
-
-        return moment(timestamp.toString(), 'x')
-          .utcOffset(parseInt(this.timezone.substr(3)))
-          .format('YYYY-MM-DD')
+        return (new Date(timestamp)).toLocaleDateString()
       }
     }
   }

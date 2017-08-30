@@ -12,13 +12,13 @@
 
           <form>
             <label>{{$t('product_definition.data.id')}}: </label>
-            <input type="text" class="form-control" v-model="editingDataDefinition.dataId" required :disabled="viewOnly">
+            <input type="text" class="form-control" v-model="editingDataDefinition.dataId" required>
 
             <label>{{$t('product_definition.data.name')}}: </label>
-            <input type="text" class="form-control" v-model="editingDataDefinition.name" required :disabled="viewOnly">
+            <input type="text" class="form-control" v-model="editingDataDefinition.name" required>
 
             <label>{{$t('misc.description')}}: </label>
-            <textarea class="form-control" v-model="editingDataDefinition.description" required :disabled="viewOnly"></textarea>
+            <textarea class="form-control" v-model="editingDataDefinition.description" required></textarea>
 
             <label>{{$t('product_definition.data.def')}} <small>{{$t('product_definition.data.def_1')}} <a href="http://json-schema.org/" target="_blank">{{$t('product_definition.data.def_2')}}</a> {{$t('product_definition.data.def_3')}}</small>: </label>
             <div class="data-def-editor" ref="dataEditor">{{ JSON.stringify(editingDataDefinition.dataSchema, null, 2) }}</div>
@@ -37,7 +37,7 @@
             <div class="clear-fix"></div>
 
             <label>{{$t('product_definition.data.demo_data')}}: </label>
-            <textarea class="form-control data-editor__demo" v-model="demoJson" readonly :disabled="viewOnly"></textarea>
+            <textarea class="form-control data-editor__demo" v-model="demoJson" readonly></textarea>
           </form>
 
         </div>
@@ -46,7 +46,7 @@
           <p class="text-danger" v-else-if="message !== ''"><small>{{$t('misc.cancel')}}</small></p>
 
           <button type="button" class="btn btn-default" data-dismiss="modal">{{$t('misc.close')}}</button>
-          <button type="button" class="btn btn-primary" @click="finishEditing" v-if="!viewOnly">{{$t('misc.save')}}</button>
+          <button type="button" class="btn btn-primary" @click="finishEditing">{{$t('misc.save')}}</button>
         </div>
 
       </div>
@@ -57,7 +57,6 @@
 <script>
   import $ from 'jquery'
   import api from 'src/api'
-  import { mapActions } from 'vuex'
 
   // prefetch libraries for DataDefinitionEditor (Copy these two line to other component)
   // import(/* webpackChunkName: "data-editor" */ 'src/components/common/brace')
@@ -67,7 +66,7 @@
     name: 'DataDefinitionEditor',
 
     props: {
-      product: {
+      productType: {
         type: Object,
         require: true
       },
@@ -75,9 +74,7 @@
       productData: {
         type: Object,
         require: false
-      },
-
-      viewOnly: Boolean
+      }
     },
 
     data () {
@@ -127,9 +124,7 @@
 
     computed: {
       title () {
-        if (this.viewOnly) return `查看"${this.editingDataDefinition.name}"`
-
-        return this.isAddingNew ? '新增数据定义' : `编辑"${this.editingDataDefinition.name}"`
+        return this.isAddingNew ? '新增标准数据定义' : `编辑"${this.editingDataDefinition.name}"`
       }
     },
 
@@ -138,15 +133,13 @@
 
       this.editor = brace.edit(this.$refs.dataEditor)
       this.editor.getSession().setMode('ace/mode/json')
-      if (this.viewOnly) {
+      if (this.nly) {
         this.editor.setReadOnly(true)
       }
     },
 
     methods: {
-      ...mapActions(['updateProduct']),
-
-      finishEditing () {
+      async finishEditing () {
         try {
           this.parseSchema()
         } catch (e) {
@@ -154,7 +147,7 @@
           return
         }
 
-        const actionName = this.isAddingNew ? 'addDataDefinition' : 'updateDataDefinition'
+        const actionName = this.isAddingNew ? 'addProductTypeData' : 'updateProductTypeData'
         let action
         if (this.isAddingNew) {
           action = {action: actionName, ...this.editingDataDefinition}
@@ -163,12 +156,11 @@
         }
 
         try {
-          this.updateProduct({
-            product: this.product,
-            request: api.buildRequest(this.product.version)
-                        .addAction(action)
-                        .request
-          })
+          const updatedProductType = await api.productTypes.updateType(this.productType.id,
+            api.buildRequest(this.productType.version)
+              .addAction(action)
+              .request)
+          this.$emit('updated', updatedProductType)
           $(this.$refs.modal).modal('hide')
         } catch (e) {
           console.dir(e)

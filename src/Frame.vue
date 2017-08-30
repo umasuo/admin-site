@@ -71,6 +71,11 @@
             title: this.$t('nav.product_types'),
             faIcon: 'fa-tablet',
             toName: 'ProductTypes'
+          },
+          {
+            title: this.$t('nav.developers'),
+            faIcon: 'fa-users',
+            toName: 'DevelopersManager'
           }
           // {
           //   title: this.$t('nav.documentation'),

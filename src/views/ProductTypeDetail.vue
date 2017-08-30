@@ -35,17 +35,17 @@
       <div class="x_panel">
         <div class="x_title">
           <h2>{{$t('product_definition.std_data')}}
-            <button class="btn btn-xs btn-primary" @click="showAddDataModal" :product="productType">{{$t('misc.add')}}</button>
+            <button class="btn btn-xs btn-primary" @click="showAddDataModal">{{$t('misc.add')}}</button>
           </h2>
 
           <portal to="modals" v-if="isShowingDataDefinition">
-            <DataDefinitionEditor ref="dataDefinitionModal" :product="productType"></DataDefinitionEditor>
+            <DataDefinitionEditor ref="dataDefinitionModal" :productType="productType" @updated="updateType"></DataDefinitionEditor>
           </portal>
 
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
-          <ProductData v-if="productType" mode="customData" :product="productType"></ProductData>
+          <ProductTypeData v-if="productType" :productType="productType"></ProductTypeData>
         </div>
       </div>
     </div>
@@ -58,7 +58,7 @@
 
   import ProductTypeBasicInfo from 'src/components/ProductTypeBasicInfo'
   import ProductTypeFunc from 'src/components/ProductTypeFunc'
-  import ProductData from 'src/components/ProductData'
+  import ProductTypeData from 'src/components/ProductTypeData'
   import ProductTypeFuncEditor from 'src/components/ProductTypeFuncEditor'
   import DataDefinitionEditor from 'src/components/DataDefinitionEditor'
 
@@ -124,7 +124,7 @@
     components: {
       ProductTypeBasicInfo,
       ProductTypeFunc,
-      ProductData,
+      ProductTypeData,
       ProductTypeFuncEditor,
       DataDefinitionEditor
     }

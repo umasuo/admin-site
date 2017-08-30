@@ -10,6 +10,7 @@ import Signin from 'src/views/Signin'
 import Dashboard from 'src/views/Dashboard'
 import ProductTypes from 'src/views/ProductTypes'
 import ProductTypeDetail from 'src/views/ProductTypeDetail'
+import DevelopersManager from 'src/views/DevelopersManager'
 
 Vue.use(Router)
 
@@ -58,6 +59,14 @@ const router = new Router({
           name: 'ProductTypeDetail',
           component: ProductTypeDetail,
           props: true,
+          meta: {
+            requiresAuth: true
+          }
+        },
+        {
+          path: 'developers/',
+          name: 'DevelopersManager',
+          component: DevelopersManager,
           meta: {
             requiresAuth: true
           }

@@ -167,7 +167,7 @@
           case 'add':
             return '添加标准功能'
           case 'update':
-            return '编辑自定义功能'
+            return '编辑标准功能'
         }
       }
     },

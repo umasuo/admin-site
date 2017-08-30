@@ -30,6 +30,8 @@ export default {
     type: '类型',
     description: '介绍',
     state: '状态',
+    email: '邮箱',
+    phone: '手机',
     operation: '操作',
     empty: '无',
     not_set: '未设置',
@@ -61,6 +63,7 @@ $t('misc.')
   nav: {
     dashboard: '仪表盘',
     product_types: '产品类别',
+    developers: '开发者'
   },
 
   auth: {

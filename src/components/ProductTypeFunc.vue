@@ -11,7 +11,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(func, index) in productType.functions">
+      <tr v-for="(func, index) in productType.functions" :key="func.id">
         <th scope="row">{{ func.functionId }}</th>
         <td>{{ func.name }}</td>
         <td>{{ stringifyTransferType(func.transferType) }}</td>
@@ -51,7 +51,7 @@
 
     data () {
       return {
-        showingEditor: false
+        showingEditor: null
       }
     },
 
