@@ -11,8 +11,11 @@
         <div class="modal-body">
 
           <form>
-            <label>{{$t('product_definition.data.id')}}: </label>
-            <input type="text" class="form-control" v-model="editingDataDefinition.dataId" required>
+            <!-- id is unmutable -->
+            <template v-if="isAddingNew">
+              <label>{{$t('product_definition.data.id')}}: </label>
+              <input type="text" class="form-control" v-model="editingDataDefinition.dataId" required>
+            </template>
 
             <label>{{$t('product_definition.data.name')}}: </label>
             <input type="text" class="form-control" v-model="editingDataDefinition.name" required>
@@ -141,7 +144,7 @@
     methods: {
       async finishEditing () {
         try {
-          this.parseSchema()
+          await this.parseSchema()
         } catch (e) {
           this.errMsg = e.message
           return

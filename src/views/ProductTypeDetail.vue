@@ -45,7 +45,7 @@
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
-          <ProductTypeData v-if="productType" :productType="productType"></ProductTypeData>
+          <ProductTypeData v-if="productType" :productType="productType" @updated="updateType"></ProductTypeData>
         </div>
       </div>
     </div>
