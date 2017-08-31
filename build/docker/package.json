@@ -1,7 +1,7 @@
 {
   "name": "deploy-server",
   "version": "1.0.0",
-  "description": "developer-site deploy server",
+  "description": "admin-site deploy server",
   "scripts": {
     "start": "node server.js"
   },

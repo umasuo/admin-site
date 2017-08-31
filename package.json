@@ -1,7 +1,7 @@
 {
-  "name": "developer-site",
-  "version": "1.0.1",
-  "description": "Eva Cloud developer website.",
+  "name": "admin-site",
+  "version": "1.0.0",
+  "description": "Eva Cloud admin website.",
   "author": "Alan Zhang <gagazcfan@icloud.com>",
   "private": true,
   "scripts": {

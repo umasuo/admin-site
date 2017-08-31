@@ -1,6 +1,6 @@
-# developer-site
-[![Build Status](https://travis-ci.org/umasuo/developer-site.svg?branch=master)](https://travis-ci.org/umasuo/developer-site)
-> Eva Cloud developer website.
+# admin-site
+[![Build Status](https://travis-ci.org/umasuo/admin-site.svg?branch=master)](https://travis-ci.org/umasuo/admin-site)
+> Eva Cloud admin website.
 
 ## Build Setup
 

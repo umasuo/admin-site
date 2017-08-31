@@ -8,16 +8,7 @@
         <path class="st0" d="M59.5,67.9c-8-2-15.3-0.2-16.3,4c-1.1,4.2,4.6,9.2,12.5,11.2c8,2,15.3,0.2,16.3-4C73,74.9,67.4,69.9,59.5,67.9z M124.3,71.9c-1.1-4.2-8.4-6-16.3-4c-8,2-13.6,7-12.5,11.2c1.1,4.2,8.4,6,16.3,4C119.7,81.2,125.3,76.1,124.3,71.9z"/>
       </svg>
 
-      <span class="eva-single-page-top__brand"> Eva Cloud</span>
-
-      <div class="eva-single-page-top__right">
-        <label>{{$t('app.lang')}}:
-          <select>
-            <option value="zh_cn">{{$t('app.lang_options.zh_cn')}}</option>
-            <option value="en_us">{{$t('app.lang_options.en_us')}}</option>
-          </select>
-        </label>
-      </div>
+      <span class="eva-single-page-top__brand"> Eva Cloud Admin</span>
     </div>
 
     <router-view></router-view>

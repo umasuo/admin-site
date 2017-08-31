@@ -13,6 +13,6 @@ echo ${BRANCH}
 echo "====================================================================="
 if [ "$BRANCH" = "master" ] || [ "$BRANCH" = "dev" ]; then
   docker login --username="$DOCKER_USERNAME" --password="$DOCKER_PASSWORD";
-  docker push evacloud/developer-site;
+  docker push evacloud/admin-site;
 fi
 echo "============= end push docker image ================================="
