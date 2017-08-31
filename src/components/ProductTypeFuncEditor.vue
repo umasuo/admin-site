@@ -11,20 +11,20 @@
         <div class="modal-body">
 
           <form class="form-horizontal">
+
+            <div class="form-group" v-if="mode === 'add'">
+              <label class="col-xs-3 control-label"><span class="required">*</span> {{$t('product_definition.func_editor.id')}}: </label>
+              <div class="col-xs-9">
+                <input type="text" class="form-control" v-model="editingFunc.functionId">
+              </div>
+            </div>
+
             <div class="form-group">
               <label class="col-xs-3 control-label"><span class="required">*</span> {{$t('product_definition.func_editor.name')}}: </label>
               <div class="col-xs-9">
                 <input type="text" class="form-control" v-model="editingFunc.name">
               </div>
             </div>
-
-            <!-- id is unmutable -->
-            <!-- <div class="form-group">
-              <label class="col-xs-3 control-label"><span class="required">*</span> {{$t('product_definition.func_editor.id')}}: </label>
-              <div class="col-xs-9">
-                <input type="text" class="form-control" v-model="editingFunc.functionId">
-              </div>
-            </div> -->
 
             <div class="form-group">
               <label class="col-xs-3 control-label"><span class="required">*</span> {{$t('product_definition.func_editor.type')}}: </label>
