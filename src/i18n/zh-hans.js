@@ -63,7 +63,8 @@ $t('misc.')
   nav: {
     dashboard: '仪表盘',
     product_types: '产品类别',
-    developers: '开发者'
+    developers: '开发者',
+    applications: '产品上架申请'
   },
 
   auth: {

@@ -11,6 +11,7 @@ import Dashboard from 'src/views/Dashboard'
 import ProductTypes from 'src/views/ProductTypes'
 import ProductTypeDetail from 'src/views/ProductTypeDetail'
 import DevelopersManager from 'src/views/DevelopersManager'
+import ApplicationsManager from 'src/views/ApplicationsManager'
 
 Vue.use(Router)
 
@@ -67,6 +68,14 @@ const router = new Router({
           path: 'developers/',
           name: 'DevelopersManager',
           component: DevelopersManager,
+          meta: {
+            requiresAuth: true
+          }
+        },
+        {
+          path: 'applications/',
+          name: 'ApplicationsManager',
+          component: ApplicationsManager,
           meta: {
             requiresAuth: true
           }

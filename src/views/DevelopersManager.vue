@@ -3,9 +3,6 @@
     <!-- TODO: 过滤查询接口完成后实现 -->
     <!-- <div class="row">
       <div class="col-sm-12">
-
-        <div class="alert alert-danger" role="alert" v-if="message === 'fail'">{{$t('misc.fetch_data_fail')}}</div>
-
         <div class="x_panel">
           <div class="x_title">
             <h2>{{$t('misc.filter_options')}}</h2>
@@ -33,6 +30,9 @@
 
     <div class="row">
       <div class="col-sm-12">
+
+        <div class="alert alert-danger" role="alert" v-if="message === 'fail'">{{$t('misc.fetch_data_fail')}}</div>
+
         <div class="x_panel">
           <div class="x_title">
             <h2>{{$t('user_manage.user_list')}}</h2>

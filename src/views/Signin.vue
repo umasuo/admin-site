@@ -20,7 +20,6 @@
 
             <div>
               <button class="btn btn-default submit" type="submit" @click.prevent="signin" :disabled="signinState === 'fetching'">{{$t('auth.login')}}</button>
-              <router-link class="reset_pass" :to="{name: 'ResetPwd', query: {step: 1}}">{{$t('auth.forgot')}}</router-link>
             </div>
 
             <div class="clearfix"></div>

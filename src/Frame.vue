@@ -76,6 +76,11 @@
             title: this.$t('nav.developers'),
             faIcon: 'fa-users',
             toName: 'DevelopersManager'
+          },
+          {
+            title: this.$t('nav.applications'),
+            faIcon: 'fa-file',
+            toName: 'ApplicationsManager'
           }
           // {
           //   title: this.$t('nav.documentation'),
