@@ -6,8 +6,8 @@ import client from 'src/api/client'
 // import user from 'src/api/user'
 // import device from 'src/api/device'
 // import feedback from 'src/api/feedback'
-// import files from 'src/api/files'
 
+import files from 'src/api/files'
 import auth from 'src/api/auth'
 import report from 'src/api/report'
 import productTypes from 'src/api/productTypes'
@@ -54,5 +54,6 @@ export default {
   report,
   productTypes,
   developers,
-  products
+  products,
+  files
 }

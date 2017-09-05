@@ -2,7 +2,7 @@
   <div v-if="productType">
     <template v-if="state === 'viewer'">
       <div class="eva-product-basic-info-media">
-        <!-- <img class="eva-product-basic-info-media__media" :src="productType.icon"> -->
+        <img class="eva-product-basic-info-media__media" :src="productType.icon">
 
         <div class="eva-product-basic-info-media__content">
           <h3>{{ productType.name }} <button class="btn btn-xs btn-default" @click="state = 'editor'">{{$t('product_definition.basic_info.edit_info')}}</button></h3>
@@ -16,12 +16,12 @@
 
     <template v-if="state === 'editor'">
       <form class="form-horizontal eva-product-basic-info-editor">
-        <!-- <div class="form-group">
+        <div class="form-group">
           <label class="control-label col-xs-3">{{$t('misc.icon')}}: </label>
           <div class="col-xs-9">
             <ProductIconUploader v-model="productBasicInfo.icon"></ProductIconUploader>
           </div>
-        </div> -->
+        </div>
 
         <div class="form-group">
           <label class="control-label col-xs-3">产品名称: </label>
@@ -55,7 +55,7 @@
 
 <script>
   import api from 'src/api'
-  // import ProductIconUploader from 'src/components/ProductIconUploader'
+  import ProductIconUploader from 'src/components/ProductIconUploader'
 
   export default {
     name: 'ProductBasicInfo',
@@ -89,7 +89,7 @@
         try {
           const updatedProductType = await api.productTypes.updateType(this.productType.id,
             api.buildRequest(this.productType.version)
-              .addAction({action: 'updateProductType', name: this.productBasicInfo.name, groupName: this.productBasicInfo.groupName})
+              .addAction({action: 'updateProductType', name: this.productBasicInfo.name, groupName: this.productBasicInfo.groupName, icon: this.productBasicInfo.icon})
               .request)
           this.$emit('updated', updatedProductType)
           this.state = 'viewer'
@@ -106,7 +106,7 @@
     },
 
     components: {
-      // ProductIconUploader
+      ProductIconUploader
     }
   }
 </script>
