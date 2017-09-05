@@ -17,33 +17,17 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th>ID</th>
+                  <th>请求ID</th>
                   <th>产品 ID</th>
                   <th>开发者 ID</th>
+                  <th>请求类型</th>
                   <th>创建时间</th>
                   <th>处理时间</th>
                   <th>状态</th>
                   <th>操作</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr v-for="application in applications">
-                  <td>{{ application.id }}</td>
-                  <td>{{ application.productId }}</td>
-                  <td>{{ application.developerId }}</td>
-                  <td>{{ application.createdAt | timestampToString }}</td>
-                  <td>{{ application.lastModifiedAt | timestampToString }}</td>
-                  <td>{{ statusToString(application.applicationStatus) }}</td>
-                  <td>
-                    <template v-if="application.applicationStatus === 'CREATED'">
-                      <a href="javascript:;" @click="agree(application)">同意</a>
-                      <a href="javascript:;" @click="disagree(application)">拒绝</a>
-                    </template>
-
-                    <template v-else>已处理</template>
-                  </td>
-                </tr>
-              </tbody>
+              <ApplicationRow v-for="(applications, pid) in applicationsByProduct" :applications="applications" :key="pid"/>
             </table>
 
           </div>
@@ -55,13 +39,14 @@
 
 <script>
   import api from 'src/api'
+  import ApplicationRow from 'src/components/ApplicationRow'
 
   export default {
     name: 'ApplicationsManager',
 
     data () {
       return {
-        applications: null,
+        applicationsByProduct: null,
 
         message: ''
       }
@@ -69,49 +54,14 @@
 
     async created () {
       try {
-        this.applications = await api.products.getApplications()
+        this.applicationsByProduct = await api.products.getApplications()
       } catch (e) {
         this.message = 'fail'
       }
     },
 
-    filters: {
-      timestampToString (timestamp) {
-        var date = new Date(timestamp)
-        if (!date) return ''
-        return date.toLocaleDateString()
-      }
-    },
-
-    methods: {
-      async agree (application) {
-        try {
-          await api.products.updateApplication(application, true)
-        } catch (e) {
-          this.message = 'fail'
-        }
-      },
-
-      async disagree (application) {
-        try {
-          await api.products.updateApplication(application, false)
-        } catch (e) {
-          this.message = 'fail'
-        }
-      },
-
-      statusToString (status) {
-        switch (status) {
-          case 'CREATED':
-            return '未处理'
-          case 'AGREE':
-            return '已同意'
-          case 'DISAGREE':
-            return '已拒绝'
-          default:
-            return '未知状态'
-        }
-      }
+    components: {
+      ApplicationRow
     }
   }
 </script>
