@@ -12,6 +12,7 @@ import ProductTypes from 'src/views/ProductTypes'
 import ProductTypeDetail from 'src/views/ProductTypeDetail'
 import DevelopersManager from 'src/views/DevelopersManager'
 import ApplicationsManager from 'src/views/ApplicationsManager'
+import ProductDetail from 'src/views/ProductDetail'
 
 Vue.use(Router)
 
@@ -76,6 +77,15 @@ const router = new Router({
           path: 'applications/',
           name: 'ApplicationsManager',
           component: ApplicationsManager,
+          meta: {
+            requiresAuth: true
+          }
+        },
+        {
+          path: 'product/:pid',
+          name: 'Product',
+          component: ProductDetail,
+          props: true,
           meta: {
             requiresAuth: true
           }

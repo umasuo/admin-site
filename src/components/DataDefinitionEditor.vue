@@ -77,7 +77,9 @@
       productData: {
         type: Object,
         require: false
-      }
+      },
+
+      viewOnly: Boolean
     },
 
     data () {
@@ -136,7 +138,7 @@
 
       this.editor = brace.edit(this.$refs.dataEditor)
       this.editor.getSession().setMode('ace/mode/json')
-      if (this.nly) {
+      if (this.ReadOnly) {
         this.editor.setReadOnly(true)
       }
     },

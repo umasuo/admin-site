@@ -1,6 +1,14 @@
 import { http } from 'src/api/client'
 
 export default {
+  async getProduct (productId, developerId) {
+    return (await http.get(`/products/${productId}`, {
+      params: {
+        developerId
+      }
+    })).data
+  },
+
   async getApplications () {
     return (await http.get('/products/applications')).data
   },

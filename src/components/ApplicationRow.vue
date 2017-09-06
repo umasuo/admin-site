@@ -7,7 +7,11 @@
         'display': ((index !== 0 && expended) || index === 0) ? 'table-row' : 'none'
       }">
       <td>{{ application.id }}</td>
-      <td>{{ application.productId }}</td>
+      <td>
+        <router-link :to="{ name: 'Product', params: { pid: application.productId }, query: { developerid: application.developerId } }">
+          {{ application.productId }}
+        </router-link>
+      </td>
       <td>{{ application.developerId }}</td>
       <td>{{ application.requestType | requestTypeToString }}</td>
       <td>{{ application.createdAt | timestampToString }}</td>
