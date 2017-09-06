@@ -24,7 +24,7 @@
             <textarea class="form-control" v-model="editingDataDefinition.description" required></textarea>
 
             <label>{{$t('product_definition.data.def')}} <small>{{$t('product_definition.data.def_1')}} <a href="http://json-schema.org/" target="_blank">{{$t('product_definition.data.def_2')}}</a> {{$t('product_definition.data.def_3')}}</small>: </label>
-            <div class="data-def-editor" ref="dataEditor">{{ JSON.stringify(editingDataDefinition.dataSchema, null, 2) }}</div>
+            <div class="data-def-editor" ref="dataEditor">{{ JSON.stringify(JSON.parse(editingDataDefinition.schema), null, 2) }}</div>
 
             <button type="button" class="btn btn-primary" @click="generateJson">{{$t('product_definition.data.update_demo_data')}}</button>
             <span v-if="errMsg">{{$t('product_definition.data.err')}}
@@ -96,7 +96,7 @@
           dataId: 'newDataId',
           name: '范例数据定义',
           description: '范例数据定义，修改以创建新的数据定义',
-          dataSchema: {
+          schema: {
             id: 'node',
             type: 'object',
             properties: {
@@ -184,7 +184,7 @@
             JSON.stringify(ajv.errors, null, 2)
           throw new Error(errorMsg)
         } else {
-          this.editingDataDefinition.dataSchema = schema
+          this.editingDataDefinition.schema = this.editor.getValue()
           return schema
         }
       },
