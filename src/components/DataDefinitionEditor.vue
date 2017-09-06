@@ -96,23 +96,23 @@
           dataId: 'newDataId',
           name: '范例数据定义',
           description: '范例数据定义，修改以创建新的数据定义',
-          schema: {
-            id: 'node',
-            type: 'object',
-            properties: {
-              title: {
-                type: 'string'
+          openable: false,
+          schema: `{
+            "id": "node",
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
               },
-              sub_nodes: {
-                type: 'array',
-                items: {
-                  '$ref': 'node'
+              "sub_nodes": {
+                "type": "array",
+                "items": {
+                  "$ref": "node"
                 }
               }
             },
-            openable: false,
-            required: ['title']
-          }
+            "required": ["title"]
+          }`
         }
       }
 
