@@ -46,6 +46,7 @@
         </div>
         <div class="modal-footer">
           <p class="text-danger" v-if="message === 'fail'"><small>{{$t('misc.save_fail')}}</small></p>
+          <p class="text-danger" v-else-if="message === 'id has been taken'"><small>{{$t('product_definition.data.id_taken')}}</small></p>
           <p class="text-danger" v-else-if="message !== ''"><small>{{$t('misc.cancel')}}</small></p>
 
           <button type="button" class="btn btn-default" data-dismiss="modal">{{$t('misc.close')}}</button>
@@ -162,14 +163,20 @@
 
         try {
           const updatedProductType = await api.productTypes.updateType(this.productType.id,
-            api.buildRequest(this.productType.version)
+            await api.buildRequest(this.productType.version)
               .addAction(action)
               .request)
           this.$emit('updated', updatedProductType)
           $(this.$refs.modal).modal('hide')
         } catch (e) {
           console.dir(e)
-          this.message = 'fail'
+          switch (e.message) {
+            case 'Request failed with status code 409':
+              this.message = 'id has been taken'
+              break
+            default:
+              this.message = 'fail'
+          }
         }
       },
 

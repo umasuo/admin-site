@@ -281,6 +281,7 @@ $t('misc.')
       update_demo_data: '更新范例数据',
       err: '格式有误',
       show_err_detail: '显示详细错误信息',
+      id_taken: '数据 ID 已经存在',
       demo_data: '范例数据(根据定义随机生成)'
     }
   },
