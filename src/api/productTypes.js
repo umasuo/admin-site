@@ -11,6 +11,7 @@ export default {
 
   async createType (name, groupName) {
     return (await http.post('/products/types', {
+      icon: 'http://evacloud-20170725.oss-cn-shenzhen.aliyuncs.com/89df80b7-e75d-4eff-83b5-ca5877712021', // default icon
       name,
       groupName
     })).data

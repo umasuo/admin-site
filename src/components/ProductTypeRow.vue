@@ -1,5 +1,9 @@
 <template>
   <tr class="eva-product-type-row">
+    <td class="eva-product-type-row__icon" style="width: 50px;">
+      <img :src="productType.icon"></img>
+    </td>
+
     <td style="width: 200px;">
       {{ productType.name }}
     </td>
